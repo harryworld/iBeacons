@@ -22,6 +22,7 @@
 		5FB4BB9B191CC5E600C75048 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB4BB7A191CC5E500C75048 /* UIKit.framework */; };
 		5FB4BBA3191CC5E600C75048 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5FB4BBA1191CC5E600C75048 /* InfoPlist.strings */; };
 		5FB4BBA5191CC5E600C75048 /* TestBeaconTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4BBA4191CC5E600C75048 /* TestBeaconTests.m */; };
+		5FB4BBB6191CCF4F00C75048 /* libBeacon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB4BBB1191CC66B00C75048 /* libBeacon.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		5FB4BBA0191CC5E600C75048 /* TestBeaconTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestBeaconTests-Info.plist"; sourceTree = "<group>"; };
 		5FB4BBA2191CC5E600C75048 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5FB4BBA4191CC5E600C75048 /* TestBeaconTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestBeaconTests.m; sourceTree = "<group>"; };
+		5FB4BBB1191CC66B00C75048 /* libBeacon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBeacon.a; path = lib/libBeacon.a; sourceTree = "<group>"; };
+		5FB4BBB5191CCF3D00C75048 /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FB4BBB6191CCF4F00C75048 /* libBeacon.a in Frameworks */,
 				5FB4BB79191CC5E500C75048 /* CoreGraphics.framework in Frameworks */,
 				5FB4BB7B191CC5E500C75048 /* UIKit.framework in Frameworks */,
 				5FB4BB77191CC5E500C75048 /* Foundation.framework in Frameworks */,
@@ -104,6 +108,7 @@
 		5FB4BB75191CC5E500C75048 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5FB4BBB1191CC66B00C75048 /* libBeacon.a */,
 				5FB4BB76191CC5E500C75048 /* Foundation.framework */,
 				5FB4BB78191CC5E500C75048 /* CoreGraphics.framework */,
 				5FB4BB7A191CC5E500C75048 /* UIKit.framework */,
@@ -115,6 +120,7 @@
 		5FB4BB7C191CC5E500C75048 /* TestBeacon */ = {
 			isa = PBXGroup;
 			children = (
+				5FB4BBB3191CCF3D00C75048 /* include */,
 				5FB4BB85191CC5E500C75048 /* FSAppDelegate.h */,
 				5FB4BB86191CC5E500C75048 /* FSAppDelegate.m */,
 				5FB4BB88191CC5E500C75048 /* Main.storyboard */,
@@ -155,6 +161,23 @@
 				5FB4BBA1191CC5E600C75048 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5FB4BBB3191CCF3D00C75048 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				5FB4BBB4191CCF3D00C75048 /* Beacon */,
+			);
+			name = include;
+			path = lib/include;
+			sourceTree = SOURCE_ROOT;
+		};
+		5FB4BBB4191CCF3D00C75048 /* Beacon */ = {
+			isa = PBXGroup;
+			children = (
+				5FB4BBB5191CCF3D00C75048 /* Beacon.h */,
+			);
+			path = Beacon;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -386,6 +409,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TestBeacon/TestBeacon-Prefix.pch";
 				INFOPLIST_FILE = "TestBeacon/TestBeacon-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -399,6 +426,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TestBeacon/TestBeacon-Prefix.pch";
 				INFOPLIST_FILE = "TestBeacon/TestBeacon-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
