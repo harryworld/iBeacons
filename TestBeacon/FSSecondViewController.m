@@ -43,57 +43,71 @@ const NSString* kRequestActivity = @"http://www.reque.st/api/activity";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-//    
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager alloc] ;
-////    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    
-//    
-//    AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
 //
-//    [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//    [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-//    
-//    manager.requestSerializer = requestSerializer;
-//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-//
-//    NSDictionary *parameters = @{@"beaconId": @"112233"};
-//    [manager POST:kRequestActivity parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    // Post always has the issue  unacceptable content-type: text/html",
+    
+    //AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager alloc] ;
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    
+    AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
+
+    [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    manager.requestSerializer = requestSerializer;
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    
+    NSDictionary *parameters = @{@"beaconId": @"112233"};
+//    [manager POST:@"http://www.reque.st/api/activity" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        //
-//        NSLog(@"%@",responseObject);
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 //        
 //        NSLog(@"Error: %@", error);
 //    }];
     
-    // 1
-    //NSString *string = [NSString stringWithFormat:@"%@weather.php?format=json", BaseURLString];
-    NSURL *url = [NSURL URLWithString:kRequestActivity];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    // 2
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        // 3
+    [manager POST:kRequestActivity parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        //
         NSLog(@"%@",responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        // 4
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather"
-                                                            message:[error localizedDescription]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:nil];
-        [alertView show];
+        NSLog(@"Error: %@", error);
     }];
     
     
-    // 5
-    [operation start];
-
+    // Get can work fine
+    
+//    // 1
+//    //NSString *string = [NSString stringWithFormat:@"%@weather.php?format=json", BaseURLString];
+//    NSURL *url = [NSURL URLWithString:kRequestActivity];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    
+//    // 2
+//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+//    
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        // 3
+//        NSLog(@"%@",responseObject);
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//        // 4
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather"
+//                                                            message:[error localizedDescription]
+//                                                           delegate:nil
+//                                                  cancelButtonTitle:@"Ok"
+//                                                  otherButtonTitles:nil];
+//        [alertView show];
+//    }];
+//    
+//    
+//    // 5
+//    [operation start];
+    
     
 }
 
