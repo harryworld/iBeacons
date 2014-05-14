@@ -10,6 +10,8 @@
 #import "Beacon.h"
 #import <AFNetworking/AFNetworking.h>
 
+const NSString* kRequestActivity = @"http://www.reque.st/api/activity";
+
 
 @interface FSSecondViewController ()<BeaconNotificationDelegate>{
 
@@ -41,22 +43,57 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+//    
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager alloc] ;
+////    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    
+//    
+//    AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
+//
+//    [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//    [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//    
+//    manager.requestSerializer = requestSerializer;
+//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+//
+//    NSDictionary *parameters = @{@"beaconId": @"112233"};
+//    [manager POST:kRequestActivity parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+//        //
+//        NSLog(@"%@",responseObject);
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        
+//        NSLog(@"Error: %@", error);
+//    }];
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
-
-    [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    // 1
+    //NSString *string = [NSString stringWithFormat:@"%@weather.php?format=json", BaseURLString];
+    NSURL *url = [NSURL URLWithString:kRequestActivity];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
-    manager.requestSerializer = requestSerializer;
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-
-    NSDictionary *parameters = @{@"beaconId": @"112233"};
-    [manager POST:@"http://www.reque.st/api/activity" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+    // 2
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        // 3
+        NSLog(@"%@",responseObject);
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
+        
+        // 4
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather"
+                                                            message:[error localizedDescription]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        [alertView show];
     }];
+    
+    
+    // 5
+    [operation start];
+
     
 }
 
