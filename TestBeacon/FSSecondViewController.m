@@ -8,6 +8,8 @@
 
 #import "FSSecondViewController.h"
 #import "Beacon.h"
+#import <AFNetworking/AFNetworking.h>
+
 
 @interface FSSecondViewController ()<BeaconNotificationDelegate>{
 
@@ -38,11 +40,33 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
+
+    [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    manager.requestSerializer = requestSerializer;
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+
+    NSDictionary *parameters = @{@"beaconId": @"112233"};
+    [manager POST:@"http://www.reque.st/api/activity" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+}
 
 - (void)NotifyWhenEntry{
     [self sendLocalNotificationWithMessage:@"Weclome !"];
     
     self.view.backgroundColor = [UIColor redColor];
+    
+
+    
 }
 - (void)NotifyWhenExit{
     [self sendLocalNotificationWithMessage:@"Goodbye"];

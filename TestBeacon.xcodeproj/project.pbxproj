@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5125EC508D844DCBB2D1C355 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3D73ABA12044318973C1C9C /* libPods.a */; };
+		5F9ACCB119235B9B00B13FB5 /* sim_libBeacon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9ACCB019235B9B00B13FB5 /* sim_libBeacon.a */; };
 		5FB4BB77191CC5E500C75048 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB4BB76191CC5E500C75048 /* Foundation.framework */; };
 		5FB4BB79191CC5E500C75048 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB4BB78191CC5E500C75048 /* CoreGraphics.framework */; };
 		5FB4BB7B191CC5E500C75048 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB4BB7A191CC5E500C75048 /* UIKit.framework */; };
@@ -22,7 +24,6 @@
 		5FB4BB9B191CC5E600C75048 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB4BB7A191CC5E500C75048 /* UIKit.framework */; };
 		5FB4BBA3191CC5E600C75048 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5FB4BBA1191CC5E600C75048 /* InfoPlist.strings */; };
 		5FB4BBA5191CC5E600C75048 /* TestBeaconTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4BBA4191CC5E600C75048 /* TestBeaconTests.m */; };
-		5FB4BBB6191CCF4F00C75048 /* libBeacon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB4BBB1191CC66B00C75048 /* libBeacon.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5F9ACCB019235B9B00B13FB5 /* sim_libBeacon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = sim_libBeacon.a; path = lib/sim_libBeacon.a; sourceTree = "<group>"; };
 		5FB4BB73191CC5E500C75048 /* TestBeacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestBeacon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB4BB76191CC5E500C75048 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5FB4BB78191CC5E500C75048 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -59,6 +61,8 @@
 		5FB4BBA4191CC5E600C75048 /* TestBeaconTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestBeaconTests.m; sourceTree = "<group>"; };
 		5FB4BBB1191CC66B00C75048 /* libBeacon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBeacon.a; path = lib/libBeacon.a; sourceTree = "<group>"; };
 		5FB4BBB5191CCF3D00C75048 /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
+		9FADD4FB3CF2403C98FFBC8C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		E3D73ABA12044318973C1C9C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,10 +70,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FB4BBB6191CCF4F00C75048 /* libBeacon.a in Frameworks */,
+				5F9ACCB119235B9B00B13FB5 /* sim_libBeacon.a in Frameworks */,
 				5FB4BB79191CC5E500C75048 /* CoreGraphics.framework in Frameworks */,
 				5FB4BB7B191CC5E500C75048 /* UIKit.framework in Frameworks */,
 				5FB4BB77191CC5E500C75048 /* Foundation.framework in Frameworks */,
+				5125EC508D844DCBB2D1C355 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +98,7 @@
 				5FB4BB9E191CC5E600C75048 /* TestBeaconTests */,
 				5FB4BB75191CC5E500C75048 /* Frameworks */,
 				5FB4BB74191CC5E500C75048 /* Products */,
+				9FADD4FB3CF2403C98FFBC8C /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,11 +114,13 @@
 		5FB4BB75191CC5E500C75048 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5F9ACCB019235B9B00B13FB5 /* sim_libBeacon.a */,
 				5FB4BBB1191CC66B00C75048 /* libBeacon.a */,
 				5FB4BB76191CC5E500C75048 /* Foundation.framework */,
 				5FB4BB78191CC5E500C75048 /* CoreGraphics.framework */,
 				5FB4BB7A191CC5E500C75048 /* UIKit.framework */,
 				5FB4BB98191CC5E600C75048 /* XCTest.framework */,
+				E3D73ABA12044318973C1C9C /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -187,9 +195,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5FB4BBA8191CC5E600C75048 /* Build configuration list for PBXNativeTarget "TestBeacon" */;
 			buildPhases = (
+				6D1B13BECC7345F099C1A659 /* Check Pods Manifest.lock */,
 				5FB4BB6F191CC5E500C75048 /* Sources */,
 				5FB4BB70191CC5E500C75048 /* Frameworks */,
 				5FB4BB71191CC5E500C75048 /* Resources */,
+				E79AFD8F775947C48E0DB9B8 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -272,6 +282,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6D1B13BECC7345F099C1A659 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E79AFD8F775947C48E0DB9B8 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5FB4BB6F191CC5E500C75048 /* Sources */ = {
@@ -403,6 +446,7 @@
 		};
 		5FB4BBA9191CC5E600C75048 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FADD4FB3CF2403C98FFBC8C /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -420,6 +464,7 @@
 		};
 		5FB4BBAA191CC5E600C75048 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FADD4FB3CF2403C98FFBC8C /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -494,6 +539,7 @@
 				5FB4BBAA191CC5E600C75048 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5FB4BBAB191CC5E600C75048 /* Build configuration list for PBXNativeTarget "TestBeaconTests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +548,7 @@
 				5FB4BBAD191CC5E600C75048 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
