@@ -10,7 +10,7 @@
 #import "Beacon.h"
 #import <AFNetworking/AFNetworking.h>
 
-const NSString* kRequestActivity = @"http://www.reque.st/api/activity";
+#define kRequestActivity @"http://www.reque.st/api/activity"
 
 
 @interface FSSecondViewController ()<BeaconNotificationDelegate>{
@@ -43,58 +43,37 @@ const NSString* kRequestActivity = @"http://www.reque.st/api/activity";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-//    
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager alloc] ;
-////    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    
-//    
-//    AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
-//
-//    [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//    [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-//    
-//    manager.requestSerializer = requestSerializer;
-//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-//
-//    NSDictionary *parameters = @{@"beaconId": @"112233"};
-//    [manager POST:kRequestActivity parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-//        //
-//        NSLog(@"%@",responseObject);
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        
-//        NSLog(@"Error: %@", error);
-//    }];
     
-    // 1
-    //NSString *string = [NSString stringWithFormat:@"%@weather.php?format=json", BaseURLString];
+    NSArray *objects = [NSArray arrayWithObjects:@"user1@1q2w3e", @"1q2w3e", nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"beaconId", @"strength", nil];
+    NSDictionary *questionDict = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    
+    NSDictionary *jsonDict = [NSDictionary dictionaryWithObject:questionDict forKey:@"question"];
+    
+    NSError *error;
+    NSData *requestData = [NSJSONSerialization dataWithJSONObject:jsonDict
+                                                       options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
+                                                         error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:requestData encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"jsonRequest is %@", jsonString);
+    
     NSURL *url = [NSURL URLWithString:kRequestActivity];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
-    // 2
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        // 3
-        NSLog(@"%@",responseObject);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        // 4
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather"
-                                                            message:[error localizedDescription]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:nil];
-        [alertView show];
-    }];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     
     
-    // 5
-    [operation start];
-
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[NSString stringWithFormat:@"%d", [requestData length]] forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody: requestData];
     
+    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if (connection) {
+        [connection start];
+    }
 }
 
 - (void)NotifyWhenEntry{
